@@ -9,6 +9,7 @@ import { useMutation } from "react-query";
 import useAuthStore from "../../store/store";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
 
 const initialValues = {
   email: "",
@@ -28,7 +29,6 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
-  
   const [error, setError] = useState(null);
   const setUser = useAuthStore((state) => state.setUser);
 
@@ -37,16 +37,29 @@ const Login = () => {
     (formData) => Request("post", "login", formData),
     {
       onSuccess: (data) => {
-        console.log(data)
+        console.log(data);
         setUser(data);
-        navigate('/');
+        navigate("/");
       },
       onError: (error) => {
         setError(error);
       },
     }
   );
-
+  const threeC = (
+    <ThreeCircles
+      height="60"
+      width="30"
+      color="#bababa"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="three-circles-rotating"
+      outerCircleColor=""
+      innerCircleColor="#bababa"
+      middleCircleColor="#bababa"
+    />
+  );
   const handleSubmit = async (values) => {
     mutation.mutate(values);
   };
@@ -95,8 +108,7 @@ const Login = () => {
 
             <div className="login__div-btn">
               <button type="submit" disabled={isSubmitting}>
-                {" "}
-                login{" "}
+                {mutation.isLoading ? threeC : "login"}
               </button>
             </div>
           </Form>

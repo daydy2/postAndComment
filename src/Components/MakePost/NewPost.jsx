@@ -42,14 +42,14 @@ const NewPost = () => {
     <ThreeCircles
       height="40"
       width="30"
-      color="#bababa"
+      color="#974444"
       wrapperStyle={{}}
       wrapperClass=""
       visible={true}
       ariaLabel="three-circles-rotating"
-      outerCircleColor=""
-      innerCircleColor="#bababa"
-      middleCircleColor="#bababa"
+      outerCircleColor="#974444"
+      innerCircleColor="#974444"
+      middleCircleColor="#974444"
     />
   );
 

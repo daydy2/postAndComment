@@ -2,8 +2,8 @@ import axios from "axios";
 import useAuthStore from "../store/store";
 
 const instance = axios.create({
-  baseURL: "mern-app-server-production-a0af.up.railway.app/",
-  headers: { "Content-Type": "application/json" },
+  baseURL: "https://mern-post-c.onrender.com/",
+  headers: { "Content-Type": "application/json", "X-Custom-Header": "value" },
 });
 
 instance.interceptors.request.use(

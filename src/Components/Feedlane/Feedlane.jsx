@@ -75,16 +75,29 @@ const Feedlane = () => {
     );
   }
 
+  if(queryData == []){
+    return (
+      <div className="feedlane-loader">
+        <p style={{ fontSize: "18px", textAlign: "center" }}>
+          <em>No data</em>
+        </p>
+      </div>
+    );
+
+  }
+
   return (
     <FEEDLANE>
       {queryData.map((datum) => {
+        console.log(datum);
         return (
           <Feed
-            key={datum._id}
-            title={datum.title}
-            post={datum.content}
-            author={datum.author}
-            postId={datum._id}
+            key={datum._id ? datum._id : ''}
+            title={datum.title ? datum.title : ''}
+            post={datum.content ? datum.content : ''}
+            author={datum.author.handle ? datum.author.handle : ''}
+            postId={datum._id ? datum._id : ''}
+            date={datum.createdAt ? datum.createdAt : ''}
           />
         );
       })}
@@ -93,7 +106,7 @@ const Feedlane = () => {
 };
 
 const FEEDLANE = styled.main`
-width: 100%:
+width: 80%:
  display: flex;
  flex-direction: column;
  justify-content: center;

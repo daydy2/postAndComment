@@ -14,9 +14,9 @@ export const Settings = <MdSettings size={32} color="#974444" />;
 export const Logout = <TbLogout size={32} />;
 export const Login = <TbLogin />;
 export const Profile = <CgProfile size={32} color="#974444" />;
-export const Follow = <RiUserFollowLine size={20} />;
-export const UnFollow = <RiUserUnfollowLine size={20}/>;
-export const Comment = <BiComment size={20}/>
+export const Follow = <RiUserFollowLine size={16} />;
+export const UnFollow = <RiUserUnfollowLine size={16}/>;
+export const Comment = <BiComment size={16}/>
 export const Picture = <FcPicture size={32}/>
 export const Edit = <MdDriveFileRenameOutline size={16}/>
 export const User = <AiOutlineUser size={16}/>

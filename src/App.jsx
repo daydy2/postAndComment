@@ -55,7 +55,7 @@ const App = () => {
             <div className="newpost">
               {/* <Date /> */}
               <NewPost />
-              <FollowerComp />
+              {/* <FollowerComp /> */}
             </div>
           </div>
         </>

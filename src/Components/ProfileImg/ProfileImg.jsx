@@ -6,13 +6,13 @@ const ProfileImg = ({width, height, ...rest}) => {
   return (
     <Image>
       <section className="profile__img" style={{textAlign: 'center'}}>
-        <img
+        {/* <img
           src={imgLink}
           alt="profile image"
           onError={(event) => (event.target.style.display = "none")}
           style={{width: width, height: height}}
           {...rest}
-        />
+        /> */}
       </section>
     </Image>
   );

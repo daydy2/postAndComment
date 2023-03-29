@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuthStore from "../store/store";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "mern-app-server-production-a0af.up.railway.app/",
   headers: { "Content-Type": "application/json" },
 });
 

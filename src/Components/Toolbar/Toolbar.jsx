@@ -47,7 +47,7 @@ const Toolbar = (props) => {
                 <Link to="/login">Login</Link>
               </li>
             )}
-            {isLoggedIn && (
+            {!isLoggedIn && (
               <li className="">
                 <Link to="/register">Signup</Link>
               </li>

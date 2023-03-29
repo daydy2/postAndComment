@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuthStore from "../store/store";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://mern-post-c.onrender.com/",
   headers: { "Content-Type": "application/json", "X-Custom-Header": "value" },
 });
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { Picture, Edit } from "../Icons/Icons";
 import InputIcon from "../InputIcon";
@@ -9,12 +9,13 @@ import useAuthStore from "../../store/store";
 import { useMutation } from "react-query";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
 
 const NewPost = () => {
   const user = useAuthStore.getState().user;
   const formikRef = useRef(null);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const initialValues = {
     title: "",
     content: "",
@@ -37,6 +38,21 @@ const NewPost = () => {
       },
     }
   );
+  const threeC = (
+    <ThreeCircles
+      height="40"
+      width="30"
+      color="#bababa"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="three-circles-rotating"
+      outerCircleColor=""
+      innerCircleColor="#bababa"
+      middleCircleColor="#bababa"
+    />
+  );
+
   const onSubmit = async (values) => {
     mutation.mutate(values);
     formikRef.current.resetForm({ values: initialValues });
@@ -47,6 +63,7 @@ const NewPost = () => {
   return (
     <Post>
       <main>
+      {error && <div className="postField">Unable to Post</div>}
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
@@ -94,7 +111,7 @@ const NewPost = () => {
                 disabled={isSubmitting}
                 className="formButton"
               >
-                Post
+                {mutation.isLoading ? threeC : "Post"}
               </button>
             </Form>
           )}

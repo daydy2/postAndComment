@@ -26,7 +26,7 @@ const sideDrawer = (props) => {
 
         {isLoggedIn && (
           <li>
-            <Link to={"/feed"}>
+            <Link to={"/"}>
               <span className="sideDrawerAnc">Dashboard</span>
             </Link>
           </li>

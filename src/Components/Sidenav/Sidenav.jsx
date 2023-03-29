@@ -10,7 +10,7 @@ const Sidenav = () => {
    <main className="dashlinks">
     <ul className="dashlink__ul-list">
      <li className="dashlink__listItem">
-      <Link to="/feed">
+      <Link to="/">
       {Dasboard}
       <span className="dashlink__text"> Dashboard</span>
       </Link>

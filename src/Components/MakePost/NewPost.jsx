@@ -30,7 +30,7 @@ const NewPost = () => {
     {
       onSuccess: (data) => {
         console.log(data);
-        navigate("/feed");
+        navigate("/");
       },
       onError: (error) => {
         setError(error);

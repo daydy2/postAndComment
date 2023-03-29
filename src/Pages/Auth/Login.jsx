@@ -39,7 +39,7 @@ const Login = () => {
       onSuccess: (data) => {
         console.log(data)
         setUser(data);
-        navigate('/feed');
+        navigate('/');
       },
       onError: (error) => {
         setError(error);

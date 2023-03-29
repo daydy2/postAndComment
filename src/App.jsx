@@ -1,7 +1,7 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import "./App.css";
 import LandingPage from "./Pages/LandingPage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Feedlane from "./Components/Feedlane/Feedlane";
 import ProfilePage from "./Pages/ProfilePage";
 import NewPost, { FollowerComp } from "./Components/MakePost/NewPost";
@@ -14,12 +14,10 @@ import Login from "./Pages/Auth/Login";
 import useAuthStore from "./store/store";
 
 const App = () => {
- 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  
   console.log("isloggedIn is" + " " + isLoggedIn);
-
+  const navigate = useNavigate();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   const drawerToggleClickHandler = () => {
@@ -29,12 +27,17 @@ const App = () => {
   const backdropClickHandler = () => {
     setSideDrawerOpen(false);
   };
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return navigate("/login");
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
       <header className="landing">
         <Toolbar drawerClickHandler={drawerToggleClickHandler} />
-        <SideDrawer show={sideDrawerOpen} ></SideDrawer>
+        <SideDrawer show={sideDrawerOpen}></SideDrawer>
         {sideDrawerOpen ? <Backdrop click={backdropClickHandler} /> : null}
       </header>
 
@@ -47,7 +50,7 @@ const App = () => {
           <div className="main-area">
             <div className="feed-area">
               <Routes>
-                <Route path="/feed" element={<Feedlane />} />
+                <Route path="/" element={<Feedlane />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/comment/:postId" element={<CommentPage />} />
               </Routes>
@@ -68,6 +71,8 @@ const App = () => {
         </div>
       )}
     </div>
+
+
   );
 };
 

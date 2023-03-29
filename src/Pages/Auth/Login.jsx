@@ -48,7 +48,7 @@ const Login = () => {
   );
   const threeC = (
     <ThreeCircles
-      height="60"
+      height="40"
       width="30"
       color="#bababa"
       wrapperStyle={{}}
@@ -72,6 +72,7 @@ const Login = () => {
         <UserCircle size={56} weight="thin" />
         <span>login</span>
       </header>
+      {error && <div className="login__div-input">Incorrect Details</div>}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

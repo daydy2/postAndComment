@@ -1,0 +1,83 @@
+*,
+*::after,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f1f1ef;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.App {
+  /* display: flex;
+  flex-direction: row;
+  gap: 1rem; */
+}
+
+.no-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.sidebar {
+  position: fixed;
+  height: 100%;
+
+}
+
+.main-area {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 20rem;
+  gap: 2rem;
+  padding: 1.5rem;
+  /* position: relative; */
+}
+
+.feed-area {
+  width: 68%;
+}
+
+.newpost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .main-area {
+    margin-left: 0rem;
+    flex-direction: column;
+  }
+
+  .no-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+
+  }
+  .feed-area {
+    margin: 0 auto;
+  }
+  .newpost{
+    margin: 0 auto;
+  }
+}

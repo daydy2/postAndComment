@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Dasboard, Profile, Settings } from "../Icons/Icons";
-import ProfileNav from "../ProfileSIdenav/Profile";
+import ProfileNav from "../ProfileSidenav/Profile";
 
 const Sidenav = () => {
  return (

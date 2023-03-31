@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Children } from "react";
 import styled from "styled-components";
 import Feed from "../Components/Feed/Feed";
 import MiniComment from "../Components/MiniComment/MiniComment";
@@ -11,8 +11,11 @@ import dayjs from "dayjs";
 const CommentPage = () => {
   const { postId } = useParams();
   console.log(postId);
-  const [post, setPost] = useState("");
-
+  const [post, setPost] = useState({
+    title: '',
+    content: ''
+  });
+  console.log('comment post == ' + post);
   const { data, isLoading, isError } = useQuery(
     "data",
     () =>
@@ -27,7 +30,7 @@ const CommentPage = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      console.log('CommentPage ' + ' ' + data);
       setPost(data);
     }
   }, [data, setPost]);
@@ -81,17 +84,19 @@ const CommentPage = () => {
         <Feed
           title={data.title}
           post={data.content}
-          author={data.author}
+          author={data.author.email}
+          authorUserId={data.author._id}
           postId={data._id}
         />
       </header>
-      {data.comments.map((comment) => {
+      {data && data.comments.map((comment) => {
         const daysAgo = dayjs().diff(comment.createdAt, 'day');
+        console.log('here is ' + comment.author)
         return (
           <MiniComment
             key={comment._id}
             text={comment.content}
-            commentAuthor={data._id}
+            //commentAuthor={comment.author.email }
             timeStamp={daysAgo}
           />
         );

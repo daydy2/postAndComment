@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useMutation } from "react-query";
 import { Request } from "../../api/request";
+import useAuthStore from "../../store/store";
 //import { useComment } from "../../store/store";
 
 
@@ -15,12 +16,18 @@ const CommentSchema = Yup.object().shape({
   comment: Yup.string().min(3, "Comment too short"),
 });
 
+
+
 const Modal = (props) => {
+  const user = useAuthStore.getState().user
+
+
   const initialValues = {
     comment: "",
     postId: props.postId,
-    userId: props.userId,
+    userId: user._id,
   };
+  
   const navigate = useNavigate();
   const mutation = useMutation(
     (formData) => Request("post", "comment", formData),
@@ -37,10 +44,13 @@ const Modal = (props) => {
 
   const handleSubmit = async (values) => {
     mutation.mutate(values);
-    props.close;
+    props.close();
   };
 
   const renderError = (message) => <p className="login__div-btn">{message}</p>;
+
+
+
   return (
     <Container>
       <main className={props.open ? "modal" : "modal modal__close"}>
@@ -65,7 +75,7 @@ const Modal = (props) => {
                     iconleft={<UserFocus size={20} weight="thin" />}
                     placeholder={"What are your thoughts?"}
                   />
-                  <Field name="userId" type="hidden" value={props.userId} />
+                  <Field name="userId" type="hidden" value={user._id} />
                   <Field name="postId" type="hidden" value={props.postId} />
                   <ErrorMessage
                     name="comment"

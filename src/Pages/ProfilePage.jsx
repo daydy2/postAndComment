@@ -11,6 +11,8 @@ import useAuthStore from "../store/store";
 import { useMutation, useQuery } from "react-query";
 import { Request } from "../api/request";
 import { useNavigate } from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
+
 
 const ProfileSchema = Yup.object().shape({
   handle: Yup.string().required("Field can not be empty"),
@@ -35,7 +37,20 @@ const ProfilePage = () => {
       returnPartialData: true,
     }
   );
-
+  const threeC = (
+    <ThreeCircles
+      height="40"
+      width="30"
+      color="#974444"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="three-circles-rotating"
+      outerCircleColor="#974444"
+      innerCircleColor="#974444"
+      middleCircleColor="#974444"
+    />
+  );
   const mutation = useMutation(
     (formData) => Request("patch", "profile", formData),
     {
@@ -149,8 +164,7 @@ const ProfilePage = () => {
             <Field type="hidden" name="userId" value={user.user.userId} />
             <div className="profilePage__div-btn">
               <button type="submit" disabled={isSubmitting}>
-                {" "}
-                Change{" "}
+              {mutation.isLoading ? threeC : "Update"}
               </button>
             </div>
           </Form>

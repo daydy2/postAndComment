@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const MiniComment = ({ text, commentAuthor, timeStamp }) => {
+  const result = commentAuthor !== null ? "Value is not null" : "Value is null";
   return (
     <Commentee>
       <section className="commentee__comment">
@@ -10,9 +11,9 @@ const MiniComment = ({ text, commentAuthor, timeStamp }) => {
         </div>
         <div className="commentee__commenter">
           <span>
-            <em>{commentAuthor}</em>
+            <em>{result == 'Value is not null' ? commentAuthor : ''}</em>
           </span>
-          <span>{timeStamp}</span>
+          <span>{timeStamp} days ago</span>
         </div>
       </section>
     </Commentee>

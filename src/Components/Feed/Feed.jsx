@@ -5,13 +5,44 @@ import Modal from "../Modal";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import Typography from "../ProfileTypography/Typography";
 import dayjs from "dayjs";
+import { Trash } from "phosphor-react";
+import { Request } from "../../api/request";
+import { useMutation } from "react-query";
+import { PencilLine } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/store";
 
-const Feed = ({ title, post, author, postId, date }) => {
+const Feed = ({ title, post, author, postId, date, authorUserId }) => {
+  const user = useAuthStore.getState().user;
+  const navigate = useNavigate();
   const [showComment, setShowComment] = useState(false);
   const handleComment = () => {
     setShowComment(!showComment);
   };
   const daysAgo = dayjs().diff(date, "day");
+  console.log("zzzzzzzzzzzzzzzzzzzzzzzzz  " + author);
+
+  const deletePostMutation = async (postId) => {
+    const response = await Request("delete", `/comment/${postId}`, null);
+
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
+  };
+  const { mutate, isLoading } = useMutation();
+  const DeletePost = ({ postId }) => {
+    mutate(deletePostMutation, {
+      onSucess: () => {},
+      onError: (error) => {},
+    });
+  };
+
+  const handleDelete = () => {
+    mutate(postId);
+  };
+  const handleEdit = () => {
+    navigate(`/edit/${postId}`);
+  };
   return (
     <FEED>
       <main>
@@ -29,12 +60,21 @@ const Feed = ({ title, post, author, postId, date }) => {
           <p className="feedPost__post">{post}</p>
           <p>
             <span className="feedPost__author-span">
-            <span><em>Author: </em></span>
+              <span>
+                <em>Author: </em>
+              </span>
               <em>
                 <strong>{author}</strong>
               </em>
             </span>
-            <span className="feedPost__day-span">{daysAgo}{daysAgo === 0 || daysAgo === 1 ? <span className="span-day">day</span> : <span className="span-day">days</span>}</span>
+            <span className="feedPost__day-span">
+              {daysAgo}
+              {daysAgo === 0 || daysAgo === 1 ? (
+                <span className="span-day">day</span>
+              ) : (
+                <span className="span-day">days</span>
+              )}
+            </span>
           </p>
           {/* <p style={{ textAlign: "right", fontSize: "18px" }}>
             <em>{author}</em>
@@ -42,20 +82,31 @@ const Feed = ({ title, post, author, postId, date }) => {
           <div className="feedConnect">
             <span className="feedConnect__span" onClick={handleComment}>
               {Comment}
-              <div className="descriptors">Comment</div>
             </span>
+            {(user._id === authorUserId) && (
+              <span className="feedConnect__span" onClick={handleEdit}>
+                <PencilLine size={16} color="#974444" />
+              </span>
+            )}
 
             <span className="feedConnect__span" onClick={() => {}}>
               {Follow}
-              <div className="descriptors">Follow</div>
+            </span>
+            <span className="feedConnect__span" onClick={handleDelete}>
+              <Trash size={16} color="#974444" weight="thin" />
             </span>
           </div>
         </section>
+        {isLoading && (
+          <p style={{ fontSize: "15px", textAlign: "center" }}>
+            Deleting post...
+          </p>
+        )}
         {showComment ? (
           <Modal
             open={showComment}
             close={handleComment}
-            userId={author}
+            userId={typeof author === "string" ? authorUserId : author}
             postId={postId}
           />
         ) : null}
@@ -145,11 +196,11 @@ const FEED = styled.main`
       text-transform: capitalize;
       padding: 1rem 0;
     }
-    &__author-span{
+    &__author-span {
       margin-right: 15px;
     }
   }
-  .span-day{
+  .span-day {
     margin-left: 2px;
   }
 `;

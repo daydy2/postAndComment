@@ -12,6 +12,7 @@ import CommentPage from "./Pages/CommentPage";
 import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import useAuthStore from "./store/store";
+import EditPage from "./Pages/EditPage";
 
 const App = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -53,6 +54,7 @@ const App = () => {
                 <Route path="/" element={<Feedlane />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/comment/:postId" element={<CommentPage />} />
+                <Route path="/edit/:postId" element={<EditPage />} />
               </Routes>
             </div>
             <div className="newpost">

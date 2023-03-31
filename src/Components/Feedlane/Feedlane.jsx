@@ -6,7 +6,14 @@ import { Request } from "../../api/request";
 import { useStore } from "../../store/store";
 import { useQuery } from "react-query";
 
+
+
+
+
 const Feedlane = () => {
+
+
+
   const { data: storeData, setData } = useStore();
 
   const {
@@ -89,7 +96,7 @@ const Feedlane = () => {
   return (
     <FEEDLANE>
       {queryData.map((datum) => {
-        console.log(datum);
+        console.log('this is my error' +' ' +datum.author);
         return (
           <Feed
             key={datum._id ? datum._id : ''}

@@ -3,7 +3,7 @@ import useAuthStore from "../store/store";
 
 //https://mern-post-c.onrender.com
 const instance = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://new-mern-app.onrender.com",
   headers: { "Content-Type": "application/json", "X-Custom-Header": "value" },
 });
 

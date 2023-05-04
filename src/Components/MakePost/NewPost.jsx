@@ -10,6 +10,7 @@ import { useMutation } from "react-query";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
+import { toast } from 'react-toastify';
 
 const NewPost = () => {
   const user = useAuthStore.getState().user;
@@ -32,9 +33,11 @@ const NewPost = () => {
       onSuccess: (data) => {
         console.log(data);
         navigate("/");
+        toast.success('Post successful!');
       },
       onError: (error) => {
         setError(error);
+        toast.error(error.message);
       },
     }
   );

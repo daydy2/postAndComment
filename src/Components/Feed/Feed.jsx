@@ -13,32 +13,34 @@ import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/store";
 
 const Feed = ({ title, post, author, postId, date, authorUserId }) => {
+  const [open, setOpen] = useState(false)
   const user = useAuthStore.getState().user;
+  const deletePost = useAuthStore(state => state.deletePost)
   const navigate = useNavigate();
   const [showComment, setShowComment] = useState(false);
   const handleComment = () => {
     setShowComment(!showComment);
   };
   const daysAgo = dayjs().diff(date, "day");
-  console.log("zzzzzzzzzzzzzzzzzzzzzzzzz  " + author);
+  
 
-  const deletePostMutation = async (postId) => {
-    const response = await Request("delete", `/comment/${postId}`, null);
+  // const deletePostMutation = async (postId) => {
+  //   const response = await Request("delete", `/comment/${postId}`, null);
 
-    if (!response.ok) {
-      throw new Error("Something went wrong");
-    }
-  };
-  const { mutate, isLoading } = useMutation();
-  const DeletePost = ({ postId }) => {
-    mutate(deletePostMutation, {
-      onSucess: () => {},
-      onError: (error) => {},
-    });
-  };
+  //   if (!response.ok) {
+  //     throw new Error("Something went wrong");
+  //   }
+  // };
+  // const { mutate, isLoading } = useMutation();
+  // const DeletePost = ({ postId }) => {
+  //   mutate(deletePostMutation, {
+  //     onSucess: () => {},
+  //     onError: (error) => {},
+  //   });
+  // };
 
   const handleDelete = () => {
-    mutate(postId);
+    deletePost(postId);
   };
   const handleEdit = () => {
     navigate(`/edit/${postId}`);

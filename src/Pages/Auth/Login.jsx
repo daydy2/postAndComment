@@ -10,6 +10,7 @@ import useAuthStore from "../../store/store";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
+import { toast } from 'react-toastify';
 
 const initialValues = {
   email: "",
@@ -40,9 +41,12 @@ const Login = () => {
         console.log(data);
         setUser(data);
         navigate("/");
+        toast.success('Login successful!');
+
       },
       onError: (error) => {
         setError(error);
+        toast.error(error.message);
       },
     }
   );

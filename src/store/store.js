@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
+import { Request } from "../api/request";
+//ddd
 const useAuthStore = create(
   persist(
     (set) => ({
@@ -14,6 +15,15 @@ const useAuthStore = create(
           isLoggedIn: true,
           token: user.token,
         })),
+
+      deletePost: async (id) => {
+        try {
+          const response = await Request("get", `delete/${id}`, null);
+          return response.data;
+        } catch (error) {
+          return error;
+        }
+      },
       logout: () => set(() => ({ isLoggedIn: false, user: null, token: null })),
     }),
     {
@@ -30,6 +40,6 @@ export const useStore = create((set) => ({
 export const useComment = create((set) => ({
   comment: null,
   setComment: (comment) => set({ comment }),
-}));;
+}));
 
-export default useAuthStore
+export default useAuthStore;

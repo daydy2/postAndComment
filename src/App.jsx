@@ -13,6 +13,9 @@ import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import useAuthStore from "./store/store";
 import EditPage from "./Pages/EditPage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const App = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -41,6 +44,7 @@ const App = () => {
         <SideDrawer show={sideDrawerOpen}></SideDrawer>
         {sideDrawerOpen ? <Backdrop click={backdropClickHandler} /> : null}
       </header>
+      <ToastContainer />
 
       {isLoggedIn ? (
         <>

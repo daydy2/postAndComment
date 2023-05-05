@@ -65,7 +65,7 @@ const NewPost = () => {
   const renderError = (message) => <p className="form__label">{message}</p>;
 
   return (
-    <>
+
       <Post>
         <main>
           {error && <div className="postField">Unable to Post</div>}
@@ -126,9 +126,9 @@ const NewPost = () => {
             )}
           </Formik>
         </main>
+        {mutation.isLoading && <Loading />}
       </Post>
-      {mutation.isLoading && <Loading />}
-    </>
+    
   );
 };
 

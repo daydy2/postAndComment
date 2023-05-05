@@ -75,68 +75,66 @@ const Login = () => {
   const renderError = (message) => <p className="login__div-btn">{message}</p>;
 
   return (
-    <>
-      <Register>
-        <header className="login__header">
-          <UserCircle size={56} weight="thin" />
-          <span>login</span>
-        </header>
-        {error && <div className="login__div-input">Incorrect Details</div>}
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-          validationSchema={LoginSchema}
-        >
-          {({ isSubmitting }) => (
-            <Form className="login__form">
-              <div className="login__div-input">
-                <label htmlFor="email">Email</label>
-                <InputIcon
-                  inputName={"email"}
-                  type={"email"}
-                  placeholder={"Enter your email"}
-                  iconleft={<Envelope size={16} weight="thin" />}
-                  iconRight={Edit}
-                />
-                {/* <ErrorMessage
+    <Register>
+      <header className="login__header">
+        <UserCircle size={56} weight="thin" />
+        <span>login</span>
+      </header>
+      {error && <div className="login__div-input">Incorrect Details</div>}
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={LoginSchema}
+      >
+        {({ isSubmitting }) => (
+          <Form className="login__form">
+            <div className="login__div-input">
+              <label htmlFor="email">Email</label>
+              <InputIcon
+                inputName={"email"}
+                type={"email"}
+                placeholder={"Enter your email"}
+                iconleft={<Envelope size={16} weight="thin" />}
+                iconRight={Edit}
+              />
+              {/* <ErrorMessage
                   name="email"
                   component="div"
                   render={renderError}
                 /> */}
-              </div>
-              <div className="login__div-input">
-                <label htmlFor="bio">Password</label>
-                <InputIcon
-                  inputName={"password"}
-                  type={"password"}
-                  placeholder={"Enter your password"}
-                  iconleft={<Password size={16} weight="thin" />}
-                  iconRight={Edit}
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  render={renderError}
-                />
-              </div>
+            </div>
+            <div className="login__div-input">
+              <label htmlFor="bio">Password</label>
+              <InputIcon
+                inputName={"password"}
+                type={"password"}
+                placeholder={"Enter your password"}
+                iconleft={<Password size={16} weight="thin" />}
+                iconRight={Edit}
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                render={renderError}
+              />
+            </div>
 
-              <div className="login__div-btn">
-                <button type="submit" disabled={isSubmitting}>
-                  {mutation.isLoading ? threeC : "login"}
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-        <p className="signup__p">
-          New!{" "}
-          <Link to="/register">
-            <span>Register</span>
-          </Link>
-        </p>
-      </Register>
+            <div className="login__div-btn">
+              <button type="submit" disabled={isSubmitting}>
+                {mutation.isLoading ? threeC : "login"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+      <p className="signup__p">
+        New!{" "}
+        <Link to="/register">
+          <span>Register</span>
+        </Link>
+      </p>
       {mutation.isLoading && <LoadingModal></LoadingModal>}
-    </>
+    </Register>
   );
 };
 
@@ -154,7 +152,8 @@ const Register = styled.main`
     align-items: center;
 
     & span {
-      font-family: 'Lora', serif; font-size: 2rem;
+      font-family: "Lora", serif;
+      font-size: 2rem;
       font-weight: bold;
       line-height: 1.9rem;
       margin: 10px 0;
@@ -166,7 +165,8 @@ const Register = styled.main`
       padding: 1rem 0;
 
       & label {
-        font-family: 'Lora', serif; font-size: 18px;
+        font-family: "Lora", serif;
+        font-size: 18px;
         font-weight: bold;
         margin-bottom: 1rem;
       }
@@ -184,7 +184,8 @@ const Register = styled.main`
         background: #974444;
         color: black;
         font-family: "sans-serif";
-        font-family: 'Lora', serif; font-size: 16px;
+        font-family: "Lora", serif;
+        font-size: 16px;
         text-align: center;
         font-weight: 500;
         margin: 0 auto;
@@ -201,7 +202,8 @@ const Register = styled.main`
   }
   .signup__p {
     text-align: center;
-    font-family: 'Lora', serif; font-size: 1.6rem;
+    font-family: "Lora", serif;
+    font-size: 1.6rem;
     font-weight: bold;
     margin-block: 0.8px;
   }

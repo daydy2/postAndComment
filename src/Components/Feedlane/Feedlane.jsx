@@ -88,12 +88,11 @@ const Feedlane = () => {
   }
 
   return (
-    <>
     <FEEDLANE>
       {queryData.map((feed) => {
         return (
           <Feed
-            key={feed?._id }
+            key={feed?._id}
             title={feed?.title}
             post={feed?.content}
             author={feed?.author.handle}
@@ -104,7 +103,6 @@ const Feedlane = () => {
         );
       })}
     </FEEDLANE>
-       </>
   );
 };
 

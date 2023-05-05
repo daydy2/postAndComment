@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Comment} from "../Icons/Icons";
+import { Comment } from "../Icons/Icons";
 import Modal from "../Modal";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import Typography from "../ProfileTypography/Typography";
@@ -30,67 +30,65 @@ const Feed = ({ title, post, author, postId, date, authorId }) => {
     navigate(`/edit/${postId}`);
   };
   return (
-    <>
-      <FEED>
-        <main>
-          <section className="feedUser">
-            <ProfileImg width={"50px"} height={"50px"} />
-            <Typography profileName={"Dinis Danielle"} fzname={"13px"} />
-          </section>
-          <section className="feedPost">
-            <p className="feedPost__title">{title}</p>
-            <p className="feedPost__post">{post}</p>
-            <p>
-              <span className="feedPost__author-span">
-                <span>
-                  <em>Author: </em>
-                </span>
-                <em>
-                  <strong>{author}</strong>
-                </em>
+    <FEED>
+      <main>
+        <section className="feedUser">
+          <ProfileImg width={"50px"} height={"50px"} />
+          <Typography profileName={"Dinis Danielle"} fzname={"13px"} />
+        </section>
+        <section className="feedPost">
+          <p className="feedPost__title">{title}</p>
+          <p className="feedPost__post">{post}</p>
+          <p>
+            <span className="feedPost__author-span">
+              <span>
+                <em>Author: </em>
               </span>
-              <span className="feedPost__day-span">
-                {daysAgo}
-                {daysAgo === 0 || daysAgo === 1 ? (
-                  <span className="span-day">day</span>
-                ) : (
-                  <span className="span-day">days</span>
-                )}
-              </span>
-            </p>
-            {/* <p style={{ textAlign: "right", fontSize: "18px" }}>
+              <em>
+                <strong>{author}</strong>
+              </em>
+            </span>
+            <span className="feedPost__day-span">
+              {daysAgo}
+              {daysAgo === 0 || daysAgo === 1 ? (
+                <span className="span-day">day</span>
+              ) : (
+                <span className="span-day">days</span>
+              )}
+            </span>
+          </p>
+          {/* <p style={{ textAlign: "right", fontSize: "18px" }}>
             <em>{author}</em>
           </p> */}
-            <div className="feedConnect">
-              <span className="feedConnect__span" onClick={handleComment}>
-                {Comment}
+          <div className="feedConnect">
+            <span className="feedConnect__span" onClick={handleComment}>
+              {Comment}
+            </span>
+            {user?.user.userId == authorId && (
+              <span className="feedConnect__span" onClick={handleEdit}>
+                <PencilLine size={16} color="#974444" />
               </span>
-              {user?.user.userId == authorId && (
-                <span className="feedConnect__span" onClick={handleEdit}>
-                  <PencilLine size={16} color="#974444" />
-                </span>
-              )}
+            )}
 
-              {user?.user.userId == authorId && (
-                <span className="feedConnect__span" onClick={handleDelete}>
-                  <Trash size={16} color="#974444" weight="bold" />
-                </span>
-              )}
-            </div>
-          </section>
+            {user?.user.userId == authorId && (
+              <span className="feedConnect__span" onClick={handleDelete}>
+                <Trash size={16} color="#974444" weight="bold" />
+              </span>
+            )}
+          </div>
+        </section>
 
-          {showComment ? (
-            <Modal
-              open={showComment}
-              close={handleComment}
-              userId={typeof author === "string" ? authorId : author}
-              postId={postId}
-            />
-          ) : null}
-        </main>
-      </FEED>
+        {showComment ? (
+          <Modal
+            open={showComment}
+            close={handleComment}
+            userId={typeof author === "string" ? authorId : author}
+            postId={postId}
+          />
+        ) : null}
+      </main>
       {loader && <Loading />}
-    </>
+    </FEED>
   );
 };
 
@@ -112,7 +110,6 @@ const FEED = styled.main`
 
     &__title {
       font-family: "Lora", serif;
-      font-family: "Lora", serif;
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 10px;
@@ -121,7 +118,7 @@ const FEED = styled.main`
       text-transform: capitalize;
     }
   }
-  
+
   .feedConnect {
     padding: 0rem 1rem;
     margin-top: 1.5rem;
@@ -178,7 +175,7 @@ const FEED = styled.main`
     text-transform: capitalize;
     padding: 1rem 0;
   }
-  .feedPost__post{
+  .feedPost__post {
     text-align: left;
     font-weight: 400;
     font-family: "Lora", serif;
@@ -186,9 +183,9 @@ const FEED = styled.main`
     word-space: 0.5;
     text-transform: capitalize;
     margin-block: 10px;
-
   }
-  .feedPost__author-span, .feedPost__day-span {
+  .feedPost__author-span,
+  .feedPost__day-span {
     margin-right: 15px;
     opacity: 0.6;
     margin-bop: 8px;

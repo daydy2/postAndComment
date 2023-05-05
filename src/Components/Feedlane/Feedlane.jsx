@@ -107,11 +107,10 @@ const Feedlane = () => {
 };
 
 const FEEDLANE = styled.main`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
   .feedlane-loader {
     display: flex;

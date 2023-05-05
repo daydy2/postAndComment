@@ -1,13 +1,13 @@
 import React from "react";
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import "./Toolbar.css";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
 import { Request } from "../../api/request";
 import { Link, useNavigate } from "react-router-dom";
 
 const Toolbar = (props) => {
-  const logout = useAuthStore((state) => state.logout);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = userSlice((state) => state.logout);
+  const isLoggedIn = userSlice((state) => state.isLoggedIn);
   const navigate = useNavigate();
 
   const handleClick = () => {

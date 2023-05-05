@@ -4,19 +4,19 @@ import { Logout } from "../Icons/Icons";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import Typography from "../ProfileTypography/Typography";
 import { Request } from "../../api/request";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
 import { useNavigate } from "react-router-dom";
 
 const Profile = (props) => {
-  const logout = useAuthStore((state) => state.logout);
-  const token = useAuthStore((state) => state.token);
+  const logout = userSlice((state) => state.logout);
+  // const token = userSlice((state) => state.token);
   const navigate = useNavigate();
-  const user = useAuthStore((state) => state.user);
+  const user = userSlice((state) => state.user);
   console.log('data for user from profile sidnav ' + ' ' + user)
 
   const handleClick = () => {
     logout();
-    Request("get", "logout", null, token).then((res) => res.data);
+    Request("get", "logout", null).then((res) => res.data);
     navigate("/login");
   };
   return (
@@ -24,8 +24,8 @@ const Profile = (props) => {
       <main className="profile">
         <ProfileImg width="6rem" height="6rem" />
         <Typography
-          handle={user.user.handle}
-          email={user.user.email}
+          handle={user?.user.handle}
+          email={user?.user.email}
         />
         <section className="profile__logout">
           <div className="logout" onClick={handleClick}>

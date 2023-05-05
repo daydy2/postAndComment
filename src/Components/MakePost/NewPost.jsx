@@ -5,22 +5,23 @@ import InputIcon from "../InputIcon";
 import { NotePencil, UsersThree } from "phosphor-react";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
 import { useMutation } from "react-query";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
 import { toast } from 'react-toastify';
+import Loading from "../LoadingModal";
 
 const NewPost = () => {
-  const user = useAuthStore.getState().user;
+  const user = userSlice.getState().user;
   const formikRef = useRef(null);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const initialValues = {
     title: "",
     content: "",
-    userId: user.user.userId,
+    userId: user?.user.userId,
   };
   const PostSchema = Yup.object({
     title: Yup.string().required("Title is required").min(5).max(101),
@@ -64,6 +65,7 @@ const NewPost = () => {
   const renderError = (message) => <p className="form__label">{message}</p>;
 
   return (
+    <>
     <Post>
       <main>
       {error && <div className="postField">Unable to Post</div>}
@@ -100,7 +102,7 @@ const NewPost = () => {
                   iconRight={Edit}
                   iconleft={<NotePencil size={16} weight="thin" />}
                 />
-                <Field type="hidden" name="userId" value={user.user.userId} />
+                <Field type="hidden" name="userId" value={user?.user.userId} />
               </div>
               <div className="postError">
                 <ErrorMessage
@@ -121,6 +123,8 @@ const NewPost = () => {
         </Formik>
       </main>
     </Post>
+    {mutation.isLoading && <Loading />}
+    </>
   );
 };
 

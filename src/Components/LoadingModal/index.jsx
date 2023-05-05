@@ -26,15 +26,20 @@ const Load = styled.main`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99999;
   background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .loadingModal__section {
     width: 40vw;
+    // background: #ffffff;
+    height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 export default Loading;

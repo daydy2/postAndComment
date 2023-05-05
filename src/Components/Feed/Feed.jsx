@@ -10,34 +10,20 @@ import { Request } from "../../api/request";
 import { useMutation } from "react-query";
 import { PencilLine } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
+import LoadingModal from "../LoadingModal";
 
-const Feed = ({ title, post, author, postId, date, authorUserId }) => {
-  const [open, setOpen] = useState(false)
-  const user = useAuthStore.getState().user;
-  const deletePost = useAuthStore(state => state.deletePost)
+const Feed = ({ title, post, author, postId, date, authorId }) => {
+  const [open, setOpen] = useState(false);
+  const user = userSlice.getState().user;
+  const deletePost = userSlice((state) => state.deletePost);
+  const loader = userSlice((state) => state.loader);
   const navigate = useNavigate();
   const [showComment, setShowComment] = useState(false);
   const handleComment = () => {
     setShowComment(!showComment);
   };
   const daysAgo = dayjs().diff(date, "day");
-  
-
-  // const deletePostMutation = async (postId) => {
-  //   const response = await Request("delete", `/comment/${postId}`, null);
-
-  //   if (!response.ok) {
-  //     throw new Error("Something went wrong");
-  //   }
-  // };
-  // const { mutate, isLoading } = useMutation();
-  // const DeletePost = ({ postId }) => {
-  //   mutate(deletePostMutation, {
-  //     onSucess: () => {},
-  //     onError: (error) => {},
-  //   });
-  // };
 
   const handleDelete = () => {
     deletePost(postId);
@@ -46,74 +32,66 @@ const Feed = ({ title, post, author, postId, date, authorUserId }) => {
     navigate(`/edit/${postId}`);
   };
   return (
-    <FEED>
-      <main>
-        <section className="feedUser">
-          <ProfileImg width={"50px"} height={"50px"} />
-          <Typography profileName={"Dinis Danielle"} fzname={"13px"} />
-        </section>
-        <section className="feedPost">
-          <p className="feedPost__title">
-            {" "}
-            <em>
-              <strong>{title}</strong>
-            </em>{" "}
-          </p>
-          <p className="feedPost__post">{post}</p>
-          <p>
-            <span className="feedPost__author-span">
-              <span>
-                <em>Author: </em>
+    <>
+      <FEED>
+        <main>
+          <section className="feedUser">
+            <ProfileImg width={"50px"} height={"50px"} />
+            <Typography profileName={"Dinis Danielle"} fzname={"13px"} />
+          </section>
+          <section className="feedPost">
+            <p className="feedPost__title">{title}</p>
+            <p className="feedPost__post">{post}</p>
+            <p>
+              <span className="feedPost__author-span">
+                <span>
+                  <em>Author: </em>
+                </span>
+                <em>
+                  <strong>{author}</strong>
+                </em>
               </span>
-              <em>
-                <strong>{author}</strong>
-              </em>
-            </span>
-            <span className="feedPost__day-span">
-              {daysAgo}
-              {daysAgo === 0 || daysAgo === 1 ? (
-                <span className="span-day">day</span>
-              ) : (
-                <span className="span-day">days</span>
-              )}
-            </span>
-          </p>
-          {/* <p style={{ textAlign: "right", fontSize: "18px" }}>
+              <span className="feedPost__day-span">
+                {daysAgo}
+                {daysAgo === 0 || daysAgo === 1 ? (
+                  <span className="span-day">day</span>
+                ) : (
+                  <span className="span-day">days</span>
+                )}
+              </span>
+            </p>
+            {/* <p style={{ textAlign: "right", fontSize: "18px" }}>
             <em>{author}</em>
           </p> */}
-          <div className="feedConnect">
-            <span className="feedConnect__span" onClick={handleComment}>
-              {Comment}
-            </span>
-            {(user._id === authorUserId) && (
-              <span className="feedConnect__span" onClick={handleEdit}>
-                <PencilLine size={16} color="#974444" />
+            <div className="feedConnect">
+              <span className="feedConnect__span" onClick={handleComment}>
+                {Comment}
               </span>
-            )}
+              {user?.user.userId == authorId && (
+                <span className="feedConnect__span" onClick={handleEdit}>
+                  <PencilLine size={16} color="#974444" />
+                </span>
+              )}
 
-            <span className="feedConnect__span" onClick={() => {}}>
-              {Follow}
-            </span>
-            <span className="feedConnect__span" onClick={handleDelete}>
-              <Trash size={16} color="#974444" weight="thin" />
-            </span>
-          </div>
-        </section>
-        {isLoading && (
-          <p style={{ fontSize: "15px", textAlign: "center" }}>
-            Deleting post...
-          </p>
-        )}
-        {showComment ? (
-          <Modal
-            open={showComment}
-            close={handleComment}
-            userId={typeof author === "string" ? authorUserId : author}
-            postId={postId}
-          />
-        ) : null}
-      </main>
-    </FEED>
+              {user?.user.userId == authorId && (
+                <span className="feedConnect__span" onClick={handleDelete}>
+                  <Trash size={16} color="#974444" weight="bold" />
+                </span>
+              )}
+            </div>
+          </section>
+
+          {showComment ? (
+            <Modal
+              open={showComment}
+              close={handleComment}
+              userId={typeof author === "string" ? authorId : author}
+              postId={postId}
+            />
+          ) : null}
+        </main>
+      </FEED>
+    </>
   );
 };
 
@@ -133,12 +111,20 @@ const FEED = styled.main`
   }
   .feedPost {
     width: 100%;
+
+    &__title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      word-spacing: 0.5rem;
+      text-align: left;
+      text-transform: capitalize;
+    }
   }
   .feedPost p {
     margin: 1rem;
     font-family: inherit;
     font-size: 1.5rem;
-    word-spacing: 0.5rem;
     font-weight: 400;
     text-align: justify;
     text-justify: inter-word;
@@ -157,10 +143,14 @@ const FEED = styled.main`
 
     & span {
       color: #974444;
-      box-shadow: 10px 10px 3px -8px rgba(0, 0, 0, 0.75);
+      padding: 8px;
 
       &:hover {
         cursor: pointer;
+        background: #f7e6e6;
+        box-shadow: 0px 1px 9px -1px rgba(229, 144, 144, 0.75);
+        -webkit-box-shadow: 0px 1px 9px -1px rgba(229, 144, 144, 0.75);
+        -moz-box-shadow: 0px 1px 9px -1px rgba(229, 144, 144, 0.75);
 
         .feedConnect__span .descriptors {
           display: block;
@@ -200,6 +190,8 @@ const FEED = styled.main`
     }
     &__author-span {
       margin-right: 15px;
+      opacity: 0.6;
+      margin-top: 8px;
     }
   }
   .span-day {

@@ -11,14 +11,14 @@ import Backdrop from "./Components/Backdrop/Backdrop";
 import CommentPage from "./Pages/CommentPage";
 import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
-import useAuthStore from "./store/store";
+import userSlice from "./store/store";
 import EditPage from "./Pages/EditPage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = userSlice((state) => state.isLoggedIn);
 
   console.log("isloggedIn is" + " " + isLoggedIn);
   const navigate = useNavigate();

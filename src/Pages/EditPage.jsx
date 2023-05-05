@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
-import useAuthStore from "../store/store";
+import userSlice from "../store/store";
 import { ThreeCircles } from "react-loader-spinner";
 import { useMutation, useQuery } from "react-query";
 import { Request } from "../api/request";
@@ -10,6 +10,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import InputIcon from "../Components/InputIcon";
 import { Comment, Edit } from "../Components/Icons/Icons";
 import { ThreeDots } from "react-loader-spinner";
+import Loading from "../Components/LoadingModal";
+import { toast } from "react-toastify";
 
 const EditPostSchema = Yup.object().shape({
   title: Yup.string().min(5, "Too short"),
@@ -17,11 +19,8 @@ const EditPostSchema = Yup.object().shape({
 });
 
 const EditPage = (props) => {
-  const [post, setPost] = useState({
-    title: "",
-    content: "",
-  });
-  const user = useAuthStore.getState().user;
+  const user = userSlice.getState().user;
+  const editPost = userSlice((state) => state.editPost);
   const { postId } = useParams();
   const navigate = useNavigate();
 
@@ -40,17 +39,15 @@ const EditPage = (props) => {
     />
   );
 
-  const { data, isLoading, isError } = useQuery(
-    "data",
-    () =>
-      Request("get", `/edit/${postId}`, null).then((res) => {
-        console.log(res.post);
-        return res.post;
-      }),
-    {
-      returnPartialData: true,
-    }
-  );
+  const {
+    data: post,
+    isLoading,
+    isError,
+  } = useQuery("editPost", async () => {
+    const response = await editPost(postId);
+    
+    return response;
+  });
 
   const mutation = useMutation(
     (formData) => Request("patch", `/edit/${postId}`, formData),
@@ -58,50 +55,25 @@ const EditPage = (props) => {
       onSuccess: (data) => {
         console.log(data);
         navigate("/");
+        toast.success("Post updated successfully!");
       },
     }
   );
-  useEffect(() => {
-    if (data) {
-      console.log("CommentPage " + " " + data);
-      setPost({
-        title: data.title,
-        content: data.content,
-      });
-    }
-  }, [data, setPost]);
+
+  const initialValues = {
+    title: post?.title,
+    content: post?.content,
+    userId: user.user.userId,
+  };
+  // console.log(post?.title);
+  // console.log(post?.content);
+
   const handleSubmit = async (values) => {
     mutation.mutate(values);
   };
-  const initialValues = {
-    title: post.title,
-    content: post.content,
-  };
-
   if (isLoading) {
-    return (
-      <div
-        className="comment-loader"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ThreeDots
-          height="100"
-          width="80"
-          radius="9"
-          color="#974444"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      </div>
-    );
+    return <Loading />;
   }
-
   if (isError) {
     return (
       <div className="comment-loader">
@@ -112,16 +84,6 @@ const EditPage = (props) => {
     );
   }
 
-//   if (!data) {
-//     return (
-//       <div className="comment-loader">
-//         <p style={{ fontSize: "18px", textAlign: "center" }}>
-//           <em>No data</em>
-//         </p>
-//       </div>
-//     );
-//   }
-
   return (
     <EditForm>
       <Formik
@@ -129,45 +91,41 @@ const EditPage = (props) => {
         validationSchema={EditPostSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, handleChange }) => {
+        {({ values, handleChange, submitForm, isSubmitting }) => {
           return (
             <Form>
-              <Field />
-              {/* <div className="edit-input">
+              <div className="edit-input">
                 <label htmlFor="title" className="titleLabel">
                   Title:
                 </label>
                 <Field
-                  as="textarea"
                   id="title"
                   name="title"
                   value={values.title}
                   onChange={handleChange}
                   className="fieldInput"
                 />
-              </div> */}
-              {/* <div className="edit-input">
+              </div>
+              <Field type="hidden" name="userId" value={values.userId} onChange={handleChange}/>
+              <div className="edit-input">
                 <label htmlFor="content" className="titleLabel">
                   Content:
                 </label>
                 <Field
-                  as="textarea"
                   id="content"
                   name="content"
                   value={values.content}
                   onChange={handleChange}
                   className="fieldInput"
                 />
-              </div> */}
-              <button type="submit" className="btn">
+              </div>
+              <button type="submit" className="btn" onClick={submitForm}>
                 Submit
               </button>
             </Form>
           );
         }}
       </Formik>
-
-      
     </EditForm>
   );
 };

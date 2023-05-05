@@ -7,7 +7,7 @@ import { Edit, Mail } from "../Components/Icons/Icons";
 import ImagePicker from "../Components/ImagePicker";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import useAuthStore from "../store/store";
+import userSlice from "../store/store";
 import { useMutation, useQuery } from "react-query";
 import { Request } from "../api/request";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const ProfileSchema = Yup.object().shape({
 });
 
 const ProfilePage = () => {
-  const user = useAuthStore.getState().user;
+  const user = userSlice.getState().user;
   // console.log(user);
   const formikRef = useRef(null);  
 

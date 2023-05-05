@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useMutation } from "react-query";
 import { Request } from "../../api/request";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
 //import { useComment } from "../../store/store";
 
 
@@ -19,7 +19,7 @@ const CommentSchema = Yup.object().shape({
 
 
 const Modal = (props) => {
-  const user = useAuthStore.getState().user
+  const user = userSlice.getState().user
 
 
   const initialValues = {
@@ -135,8 +135,8 @@ const Container = styled.main`
       & button {
         outline: none;
         border-radius: 12px;
-        padding: 8px 1rem;
-        background: #bababa;
+        padding: 14px 1rem;
+        background: #974444;
         color: black;
         font-size: 1.6rem;
         text-align: center;
@@ -176,7 +176,7 @@ const Container = styled.main`
       position: absolute;
       right: -2%;
       top: -5%;
-      background: rgb(0, 0, 0);
+      background: #974444;
       border-radius: 100px;
 
       &:hover {

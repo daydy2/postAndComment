@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useAuthStore from "../../store/store";
+import userSlice from "../../store/store";
 import "./SideDrawer.css";
 import { Request } from "../../api/request";
 
 const sideDrawer = (props) => {
-  const logout = useAuthStore((state) => state.logout);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = userSlice((state) => state.logout);
+  const isLoggedIn = userSlice((state) => state.isLoggedIn);
   let drawerClass = " side-drawer";
   if (props.show) {
     drawerClass = "side-drawer open";

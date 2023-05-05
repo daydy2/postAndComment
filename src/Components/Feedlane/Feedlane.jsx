@@ -5,15 +5,9 @@ import { ThreeDots } from "react-loader-spinner";
 import { Request } from "../../api/request";
 import { useStore } from "../../store/store";
 import { useQuery } from "react-query";
-
-
-
-
+import Loading from "../LoadingModal";
 
 const Feedlane = () => {
-
-
-
   const { data: storeData, setData } = useStore();
 
   const {
@@ -28,6 +22,7 @@ const Feedlane = () => {
       }),
     {
       returnPartialData: true,
+      refetchInterval: 1000,
     }
   );
 
@@ -82,7 +77,7 @@ const Feedlane = () => {
     );
   }
 
-  if(queryData == []){
+  if (queryData == []) {
     return (
       <div className="feedlane-loader">
         <p style={{ fontSize: "18px", textAlign: "center" }}>
@@ -90,25 +85,26 @@ const Feedlane = () => {
         </p>
       </div>
     );
-
   }
 
   return (
+    <>
     <FEEDLANE>
-      {queryData.map((datum) => {
-        console.log('this is my error' +' ' +datum.author);
+      {queryData.map((feed) => {
         return (
           <Feed
-            key={datum._id ? datum._id : ''}
-            title={datum.title ? datum.title : ''}
-            post={datum.content ? datum.content : ''}
-            author={datum.author.handle ? datum.author.handle : ''}
-            postId={datum._id ? datum._id : ''}
-            date={datum.createdAt ? datum.createdAt : ''}
+            key={feed?._id }
+            title={feed?.title}
+            post={feed?.content}
+            author={feed?.author.handle}
+            postId={feed?._id}
+            date={feed?.createdAt}
+            authorId={feed?.author._id}
           />
         );
       })}
     </FEEDLANE>
+       </>
   );
 };
 

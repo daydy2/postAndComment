@@ -5,17 +5,18 @@ import MiniComment from "../Components/MiniComment/MiniComment";
 import { ThreeDots } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { Request } from "../api/request";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import { ArrowLeft } from "phosphor-react";
 
 const CommentPage = () => {
   const { postId } = useParams();
   console.log(postId);
   const [post, setPost] = useState({
-    title: '',
-    content: ''
+    title: "",
+    content: "",
   });
-  console.log('comment post == ' + post);
+  console.log("comment post == " + post);
   const { data, isLoading, isError } = useQuery(
     "data",
     () =>
@@ -30,7 +31,7 @@ const CommentPage = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('CommentPage ' + ' ' + data);
+      console.log("CommentPage " + " " + data);
       setPost(data);
     }
   }, [data, setPost]);
@@ -80,27 +81,31 @@ const CommentPage = () => {
   }
   return (
     <Comment>
+      <Link to='/'>
+        <div className="goBack"> <ArrowLeft size={30} color="black" weight="bold"/></div>
+      </Link>
       <header className="commentPage__header">
         <Feed
-          title={data.title}
-          post={data.content}
-          author={data.author.email}
-          authorUserId={data.author._id}
-          postId={data._id}
+          title={data?.title}
+          post={data?.content}
+          author={data?.author.email}
+          authorUserId={data?.author._id}
+          postId={data?._id}
         />
       </header>
-      {data && data.comments.map((comment) => {
-        const daysAgo = dayjs().diff(comment.createdAt, 'day');
-        console.log('here is ' + comment.author)
-        return (
-          <MiniComment
-            key={comment._id}
-            text={comment.content}
-            //commentAuthor={comment.author.email }
-            timeStamp={daysAgo}
-          />
-        );
-      })}
+      {data &&
+        data?.comments.map((comment) => {
+          const daysAgo = dayjs().diff(comment?.createdAt, "day");
+          
+          return (
+            <MiniComment
+              key={comment?._id}
+              text={comment?.content}
+              //commentAuthor={comment.author.email }
+              timeStamp={daysAgo}
+            />
+          );
+        })}
     </Comment>
   );
 };

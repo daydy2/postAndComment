@@ -148,7 +148,7 @@ const Post = styled.main`
     }
   }
   .form__label {
-    font-size: 17px;
+    font-family: 'Lora', serif; font-size: 17px;
     font-weight: bolder;
     line-height: 1.9px;
   }
@@ -160,7 +160,7 @@ const Post = styled.main`
     background: #bababa;
     color: #974444;
     margin-top: 15px;
-    font-size: 18px;
+    font-family: 'Lora', serif; font-size: 18px;
     text-transform: uppercase;
     transition: transform 0.4s ease-in;
 
@@ -220,7 +220,7 @@ const Follower = styled.main`
       flex-direction: column;
     }
     &__header-text {
-      font-size: 20px;
+      font-family: 'Lora', serif; font-size: 20px;
       font-weight: bold;
       margin: 10px 0;
     }
@@ -229,7 +229,7 @@ const Follower = styled.main`
     }
     &__ul-list {
       list-style: none;
-      font-size: 18px;
+      font-family: 'Lora', serif; font-size: 18px;
       font-weight: 400px;
     }
     &__listItem{

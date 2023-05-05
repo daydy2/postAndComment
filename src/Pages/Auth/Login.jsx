@@ -154,7 +154,7 @@ const Register = styled.main`
     align-items: center;
 
     & span {
-      font-size: 2rem;
+      font-family: 'Lora', serif; font-size: 2rem;
       font-weight: bold;
       line-height: 1.9rem;
       margin: 10px 0;
@@ -166,7 +166,7 @@ const Register = styled.main`
       padding: 1rem 0;
 
       & label {
-        font-size: 18px;
+        font-family: 'Lora', serif; font-size: 18px;
         font-weight: bold;
         margin-bottom: 1rem;
       }
@@ -184,7 +184,7 @@ const Register = styled.main`
         background: #974444;
         color: black;
         font-family: "sans-serif";
-        font-size: 16px;
+        font-family: 'Lora', serif; font-size: 16px;
         text-align: center;
         font-weight: 500;
         margin: 0 auto;
@@ -201,7 +201,7 @@ const Register = styled.main`
   }
   .signup__p {
     text-align: center;
-    font-size: 1.6rem;
+    font-family: 'Lora', serif; font-size: 1.6rem;
     font-weight: bold;
     margin-block: 0.8px;
   }

@@ -13,7 +13,6 @@ import { Request } from "../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
 
-
 const ProfileSchema = Yup.object().shape({
   handle: Yup.string().required("Field can not be empty"),
   firstname: Yup.string().required("Field can not be empty"),
@@ -24,7 +23,7 @@ const ProfileSchema = Yup.object().shape({
 const ProfilePage = () => {
   const user = userSlice.getState().user;
   // console.log(user);
-  const formikRef = useRef(null);  
+  const formikRef = useRef(null);
 
   const { data, isLoading, isError } = useQuery(
     "data",
@@ -81,7 +80,7 @@ const ProfilePage = () => {
 
   return (
     <MyProfile>
-      <header className="profilePage__header">
+      {/* <header className="profilePage__header">
         <ImagePicker>
           <ProfileImg
             width="500px"
@@ -89,6 +88,9 @@ const ProfilePage = () => {
             style={{ borderRadius: "20px" }}
           />
         </ImagePicker>
+      </header> */}
+      <header>
+        <p className="header">Edit your Profile</p>
       </header>
       <Formik
         validationSchema={ProfileSchema}
@@ -103,7 +105,9 @@ const ProfilePage = () => {
               <InputIcon
                 inputName={"handle"}
                 type={"text"}
-                placeholder={user.user.handle ? user.user.handle : 'Your preferred Handle'}
+                placeholder={
+                  user.user.handle ? user.user.handle : "Your preferred Handle"
+                }
                 iconleft={<At size={16} weight="thin" />}
                 iconRight={Edit}
               />
@@ -114,7 +118,9 @@ const ProfilePage = () => {
               <InputIcon
                 inputName={"firstname"}
                 type={"text"}
-                placeholder={ user.user.firstname ? user.user.firstname : 'Your firstname'}
+                placeholder={
+                  user.user.firstname ? user.user.firstname : "Your firstname"
+                }
                 iconleft={<User size={16} />}
                 iconRight={Edit}
               />
@@ -129,7 +135,9 @@ const ProfilePage = () => {
               <InputIcon
                 inputName={"lastname"}
                 type={"text"}
-                placeholder={user.user.lastname ? user.user.lastname : 'Your lastname'}
+                placeholder={
+                  user.user.lastname ? user.user.lastname : "Your lastname"
+                }
                 iconleft={<User size={16} />}
                 iconRight={Edit}
               />
@@ -164,7 +172,7 @@ const ProfilePage = () => {
             <Field type="hidden" name="userId" value={user.user.userId} />
             <div className="profilePage__div-btn">
               <button type="submit" disabled={isSubmitting}>
-              {mutation.isLoading ? threeC : "Update"}
+                {mutation.isLoading ? threeC : "Update"}
               </button>
             </div>
           </Form>
@@ -177,6 +185,19 @@ const MyProfile = styled.main`
   background: #ffffff;
   padding: 2rem 1.5rem;
 
+  header {
+    p {
+      text-align: left;
+      font-weight: 600;
+      font-family: "Lora", serif;
+      font-size: 20px;
+      word-space: 0.5;
+      text-transform: capitalize;
+      text-align: center;
+      margin-block: 2rem;
+    }
+  }
+
   .profilePage__header {
     display: flex;
     justify-content: center;
@@ -187,6 +208,7 @@ const MyProfile = styled.main`
     padding: 1rem 0;
 
     & label {
+      font-family: "Lora", serif;
       font-size: 2rem;
       font-weight: 400;
       margin: 10px 0;
@@ -206,6 +228,7 @@ const MyProfile = styled.main`
       background: #974444;
       color: black;
       font-family: "sans-serif";
+      font-family: "Lora", serif;
       font-size: 16px;
       text-align: center;
       font-weight: 500;

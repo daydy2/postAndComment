@@ -11,7 +11,8 @@ body {
 }
 
 html {
-  font-size: 62.5%;
+  font-family: 'Lora', serif; font-size: 62.5%;
+  font-family: 'Lora', serif;
 }
 a{
   text-decoration: none;

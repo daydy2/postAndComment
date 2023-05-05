@@ -30,7 +30,7 @@
 .sideDrawerAnc {
     color: #521751;
     text-decoration: none;
-    font-size: 2rem;
+    font-family: 'Lora', serif; font-size: 2rem;
     font-weight: bold;
     line-height: 1.5rem;
     text-decoration: none;
@@ -41,8 +41,8 @@
     color: #ed8a07;
 }
 .span__tripple{
-    font-size: 3rem;
-    font-family: inherit;
+    font-family: 'Lora', serif; font-size: 3rem;
+     
     font-weight: bolder;
     word-spacing: 1rem;
 }

@@ -140,7 +140,7 @@ const EditForm = styled.main`
     padding: 1rem 0;
   }
   .titleLabel {
-    font-size: 15px;
+    font-family: 'Lora', serif; font-size: 15px;
     colour: #974444;
     margin: 10px 0;
     font-weight: bolder;

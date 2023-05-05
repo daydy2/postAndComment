@@ -128,7 +128,7 @@ const Container = styled.main`
       }
       & label {
         font-family: "serif";
-        font-size: 1.8rem;
+        font-family: 'Lora', serif; font-size: 1.8rem;
         font-weight: bold;
       }
 
@@ -138,7 +138,7 @@ const Container = styled.main`
         padding: 14px 1rem;
         background: #974444;
         color: black;
-        font-size: 1.6rem;
+        font-family: 'Lora', serif; font-size: 1.6rem;
         text-align: center;
         border-style: none;
         transition: transform 0.3s ease-in;

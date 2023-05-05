@@ -49,9 +49,9 @@ const Post = styled.main`
     }
 
     & label {
-      font-size: 2rem;
+      font-family: 'Lora', serif; font-size: 2rem;
       font-weight: bolder;
-      font-family: inherit;
+       
       text-align: center;
       margin-bottom: 1rem;
     }

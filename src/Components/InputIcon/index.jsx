@@ -39,7 +39,7 @@ const Input = styled.main`
       font-family: "serif";
       font-style: normal;
       font-weight: 500;
-      font-size: 16px;
+      font-family: 'Lora', serif; font-size: 16px;
       line-height: 29px;
       text-align: left;
       letter-spacing: 0.5px;

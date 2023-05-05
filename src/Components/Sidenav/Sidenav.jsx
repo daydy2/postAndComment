@@ -59,8 +59,8 @@ const Dashlinks = styled.main`
   }
 
   &__text {
-   font-family: inherit;
-   font-size: 2rem;
+    
+   font-family: 'Lora', serif; font-size: 2rem;
    color: #d2d2cd;
    position: relative;
    top: -0.8rem;

@@ -32,8 +32,8 @@ const Commentee = styled.main`
       border-radius: 20px 20px 0 20px;
 
       &-text p {
-        font-family: inherit;
-        font-size: 1.8rem;
+         
+        font-family: 'Lora', serif; font-size: 1.8rem;
         line-height: 1.9rem;
         word-spacing: 0.5px;
       }
@@ -42,8 +42,8 @@ const Commentee = styled.main`
       margin: 1rem 0;
       text-align: right;
       & span {
-        font-family: inherit;
-        font-size: 1.5rem;
+         
+        font-family: 'Lora', serif; font-size: 1.5rem;
         margin: 0px 10px 7px 0;
       }
     }

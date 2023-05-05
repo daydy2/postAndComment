@@ -13,9 +13,14 @@ import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import userSlice from "./store/store";
 import EditPage from "./Pages/EditPage";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { createGlobalStyle } from "styled-components";
 
+const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap');
+
+`;
 
 const App = () => {
   const isLoggedIn = userSlice((state) => state.isLoggedIn);
@@ -38,47 +43,48 @@ const App = () => {
   }, [isLoggedIn]);
 
   return (
-    <div className="App">
-      <header className="landing">
-        <Toolbar drawerClickHandler={drawerToggleClickHandler} />
-        <SideDrawer show={sideDrawerOpen}></SideDrawer>
-        {sideDrawerOpen ? <Backdrop click={backdropClickHandler} /> : null}
-      </header>
-      <ToastContainer />
+    <>
+      <GlobalStyle />
+      <div className="App">
+        <header className="landing">
+          <Toolbar drawerClickHandler={drawerToggleClickHandler} />
+          <SideDrawer show={sideDrawerOpen}></SideDrawer>
+          {sideDrawerOpen ? <Backdrop click={backdropClickHandler} /> : null}
+        </header>
+        <ToastContainer />
 
-      {isLoggedIn ? (
-        <>
-          <div className="sidebar">
-            <LandingPage />
-          </div>
-
-          <div className="main-area">
-            <div className="feed-area">
-              <Routes>
-                <Route path="/" element={<Feedlane />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/comment/:postId" element={<CommentPage />} />
-                <Route path="/edit/:postId" element={<EditPage />} />
-              </Routes>
+        {isLoggedIn ? (
+          <>
+            <div className="sidebar">
+              <LandingPage />
             </div>
-            <div className="newpost">
-              {/* <Date /> */}
-              <NewPost />
-              {/* <FollowerComp /> */}
+
+            <div className="main-area">
+              <div className="feed-area">
+                <Routes>
+                  <Route path="/" element={<Feedlane />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/comment/:postId" element={<CommentPage />} />
+                  <Route path="/edit/:postId" element={<EditPage />} />
+                </Routes>
+              </div>
+              <div className="newpost">
+                {/* <Date /> */}
+                <NewPost />
+                {/* <FollowerComp /> */}
+              </div>
             </div>
+          </>
+        ) : (
+          <div className="no-user">
+            <Routes>
+              <Route path="/register" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
           </div>
-        </>
-      ) : (
-        <div className="no-user">
-          <Routes>
-            <Route path="/register" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </div>
-      )}
-    </div>
-
-
+        )}
+      </div>
+    </>
   );
 };
 

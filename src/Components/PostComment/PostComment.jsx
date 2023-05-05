@@ -53,11 +53,11 @@ const Comment = styled.main`
       padding: 2rem 1rem;
       box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
       width: 100%;
-      font-size: 1.8rem;
+      font-family: 'Lora', serif; font-size: 1.8rem;
     }
     & label {
-      font-family: inherit;
-      font-size: 1.8rem;
+       
+      font-family: 'Lora', serif; font-size: 1.8rem;
       font-weight: bolder;
       text-align: center;
     }

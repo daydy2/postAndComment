@@ -12,6 +12,7 @@ import { PencilLine } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import userSlice from "../../store/store";
 import LoadingModal from "../LoadingModal";
+import Loading from "../LoadingModal";
 
 const Feed = ({ title, post, author, postId, date, authorId }) => {
   const [open, setOpen] = useState(false);
@@ -91,12 +92,12 @@ const Feed = ({ title, post, author, postId, date, authorId }) => {
           ) : null}
         </main>
       </FEED>
+      {loader && <Loading />}
     </>
   );
 };
 
 const FEED = styled.main`
-  @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
   main {
     display: flex;
 
@@ -113,6 +114,8 @@ const FEED = styled.main`
     width: 100%;
 
     &__title {
+      font-family: "Lora", serif;
+      font-family: "Lora", serif;
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 10px;
@@ -121,18 +124,19 @@ const FEED = styled.main`
       text-transform: capitalize;
     }
   }
-  .feedPost p {
-    margin: 1rem;
-    font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: justify;
-    text-justify: inter-word;
+  // .feedPost p {
+  //   font-family: "Lora", serif;
+  //   margin: 1rem;
+  //   font-family: "Lora", serif;
+  //   font-size: 1.5rem;
+  //   font-weight: 400;
+  //   text-align: justify;
+  //   text-justify: inter-word;
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
   .feedConnect {
     padding: 0rem 1rem;
     margin-top: 1.5rem;
@@ -179,21 +183,39 @@ const FEED = styled.main`
       display: none;
     }
   }
-  .feedPost {
-    &__title {
-      font-family: "sans-serif";
-      text-align: center;
-      font-weight: bolder;
-      font-size: 20px;
-      text-transform: capitalize;
-      padding: 1rem 0;
-    }
-    &__author-span {
-      margin-right: 15px;
-      opacity: 0.6;
-      margin-top: 8px;
-    }
+
+  .feedPost__title {
+    text-align: left;
+    font-weight: 600;
+    font-family: "Lora", serif;
+    font-size: 20px;
+    word-space: 0.5;
+    text-transform: capitalize;
+    padding: 1rem 0;
   }
+  .feedPost__post{
+    text-align: left;
+    font-weight: 400;
+    font-family: "Lora", serif;
+    font-size: 18px;
+    word-space: 0.5;
+    text-transform: capitalize;
+    margin-block: 10px;
+
+  }
+  .feedPost__author-span, .feedPost__day-span {
+    margin-right: 15px;
+    opacity: 0.6;
+    margin-bop: 8px;
+    font-family: "Lora", serif;
+    text-align: left;
+    font-weight: 400;
+    font-size: 1.6rem;
+    word-space: 0.5;
+    text-transform: capitalize;
+    padding: 1rem 0;
+  }
+
   .span-day {
     margin-left: 2px;
   }

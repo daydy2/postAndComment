@@ -114,7 +114,7 @@ const Register = styled.main`
     p {
      color: #4a5568;
      font-weight: 400;
-     font-size: 14px;
+     font-family: 'Lora', serif; font-size: 14px;
     }
    }
 
@@ -124,14 +124,14 @@ const Register = styled.main`
     margin-bottom: 40px;
 
     label {
-     font-size: 0.8rem !important;
+     font-family: 'Lora', serif; font-size: 0.8rem !important;
      padding-bottom: 7px;
      font-weight: 700;
     }
     input,
     select {
      padding: 15px;
-     font-size: 1.1rem;
+     font-family: 'Lora', serif; font-size: 1.1rem;
      border: none;
      border-radius: 5px;
      outline: none;
@@ -149,7 +149,7 @@ const Register = styled.main`
     border-bottom-left-radius: 0px;
     cursor: pointer;
     margin-bottom: 15px;
-    font-size: 15px;
+    font-family: 'Lora', serif; font-size: 15px;
     font-weight: 700;
 
     &:hover {
@@ -186,7 +186,7 @@ const Register = styled.main`
    }
   }
   .below {
-   font-size: 13px;
+   font-family: 'Lora', serif; font-size: 13px;
   }
  }
 `;

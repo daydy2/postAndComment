@@ -22,11 +22,11 @@ const Typo = styled.section`
     }
   }
   .name {
-    font-size: 1.5rem;
+    font-family: 'Lora', serif; font-size: 1.5rem;
     font-weight: bolder;
   }
   .email {
-    font-size: 1rem;
+    font-family: 'Lora', serif; font-size: 1rem;
     margin-top: 1rem;
   }
 `;

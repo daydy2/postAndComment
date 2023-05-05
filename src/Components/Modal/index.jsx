@@ -11,23 +11,19 @@ import { Request } from "../../api/request";
 import userSlice from "../../store/store";
 //import { useComment } from "../../store/store";
 
-
 const CommentSchema = Yup.object().shape({
   comment: Yup.string().min(3, "Comment too short"),
 });
 
-
-
 const Modal = (props) => {
-  const user = userSlice.getState().user
-
+  const user = userSlice.getState().user;
 
   const initialValues = {
     comment: "",
     postId: props.postId,
     userId: user._id,
   };
-  
+
   const navigate = useNavigate();
   const mutation = useMutation(
     (formData) => Request("post", "comment", formData),
@@ -48,8 +44,6 @@ const Modal = (props) => {
   };
 
   const renderError = (message) => <p className="login__div-btn">{message}</p>;
-
-
 
   return (
     <Container>
@@ -114,16 +108,17 @@ const Container = styled.main`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-  
+
       & label,
-        & span,
-        & button {
+      & span,
+      & button {
         display: block;
         margin: 1rem 0;
       }
       & label {
         font-family: "serif";
-        font-family: 'Lora', serif; font-size: 1.8rem;
+        font-family: "Lora", serif;
+        font-size: 1.8rem;
         font-weight: bold;
       }
 
@@ -133,12 +128,13 @@ const Container = styled.main`
         padding: 14px 1rem;
         background: #974444;
         color: black;
-        font-family: 'Lora', serif; font-size: 1.6rem;
+        font-family: "Lora", serif;
+        font-size: 1.6rem;
         text-align: center;
         border-style: none;
         transition: transform 0.3s ease-in;
 
-        &: hover {
+        &:hover {
           cursor: pointer;
           transform: translateY(-3px);
         }
@@ -147,7 +143,7 @@ const Container = styled.main`
 
     &__container {
       width: 751px;
-      
+
       background: #ffffff;
       border-radius: 24px;
       background-color: $neutral-white;

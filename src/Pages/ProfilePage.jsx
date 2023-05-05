@@ -191,7 +191,6 @@ const MyProfile = styled.main`
       font-weight: 600;
       font-family: "Lora", serif;
       font-size: 20px;
-      word-space: 0.5;
       text-transform: capitalize;
       text-align: center;
       margin-block: 2rem;

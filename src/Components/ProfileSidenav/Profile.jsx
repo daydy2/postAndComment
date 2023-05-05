@@ -12,7 +12,7 @@ const Profile = (props) => {
   // const token = userSlice((state) => state.token);
   const navigate = useNavigate();
   const user = userSlice((state) => state.user);
-  console.log('data for user from profile sidnav ' + ' ' + user)
+  console.log("data for user from profile sidnav " + " " + user);
 
   const handleClick = () => {
     logout();
@@ -23,10 +23,7 @@ const Profile = (props) => {
     <ProfileSideNav>
       <main className="profile">
         <ProfileImg width="6rem" height="6rem" />
-        <Typography
-          handle={user?.user.handle}
-          email={user?.user.email}
-        />
+        <Typography handle={user?.user.handle} email={user?.user.email} />
         <section className="profile__logout">
           <div className="logout" onClick={handleClick}>
             {Logout}
@@ -39,7 +36,6 @@ const Profile = (props) => {
 
 const ProfileSideNav = styled.main`
   .profile {
-    
     color: black;
     width: 100%;
     padding: 1rem 0;
@@ -48,7 +44,6 @@ const ProfileSideNav = styled.main`
     display: flex;
     flex-direction: column !important;
     justify-content: flex-start;
-   
 
     &__logout {
       text-align: center;

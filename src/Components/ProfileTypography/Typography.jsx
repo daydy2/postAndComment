@@ -5,8 +5,8 @@ const Typography = (props) => {
   return (
     <Typo>
       <section className="profile__details">
-        <span className="profile__name name" >{props.handle}</span>
-        <span className="profile__name email" >{props.email}</span>
+        <span className="profile__name name">{props.handle}</span>
+        <span className="profile__name email">{props.email}</span>
       </section>
     </Typo>
   );
@@ -22,12 +22,12 @@ const Typo = styled.section`
     }
   }
   .name {
-    font-family: 'Lora', serif; 
+    font-family: "Lora", serif;
     font-size: 1.5rem;
     font-weight: bolder;
   }
   .email {
-    font-family: 'Lora', serif; 
+    font-family: "Lora", serif;
     font-size: 1rem;
     margin-top: 1rem;
   }

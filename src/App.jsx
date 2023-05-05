@@ -4,7 +4,7 @@ import LandingPage from "./Pages/LandingPage";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Feedlane from "./Components/Feedlane/Feedlane";
 import ProfilePage from "./Pages/ProfilePage";
-import NewPost, { FollowerComp } from "./Components/MakePost/NewPost";
+import NewPost from "./Components/MakePost/NewPost";
 import Toolbar from "./Components/Toolbar/Toolbar";
 import SideDrawer from "./Components/SideDrawer/SideDrawer";
 import Backdrop from "./Components/Backdrop/Backdrop";

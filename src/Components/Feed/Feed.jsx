@@ -31,7 +31,7 @@ const Feed = ({ title, post, author, postId, date, authorId }) => {
   };
   return (
     <FEED>
-      <main>
+      <main className="feedUser__main">
         <section className="feedUser">
           <ProfileImg width={"50px"} height={"50px"} />
           <Typography profileName={"Dinis Danielle"} fzname={"13px"} />
@@ -93,9 +93,8 @@ const Feed = ({ title, post, author, postId, date, authorId }) => {
 };
 
 const FEED = styled.main`
-  main {
+  .feedUser__main {
     display: flex;
-
     width: 100%;
     margin: 1rem;
     background-color: #ffffff;
@@ -171,7 +170,6 @@ const FEED = styled.main`
     font-weight: 600;
     font-family: "Lora", serif;
     font-size: 20px;
-    word-space: 0.5;
     text-transform: capitalize;
     padding: 1rem 0;
   }
@@ -180,7 +178,6 @@ const FEED = styled.main`
     font-weight: 400;
     font-family: "Lora", serif;
     font-size: 18px;
-    word-space: 0.5;
     text-transform: capitalize;
     margin-block: 10px;
   }
@@ -188,12 +185,11 @@ const FEED = styled.main`
   .feedPost__day-span {
     margin-right: 15px;
     opacity: 0.6;
-    margin-bop: 8px;
+    margin-block: 8px;
     font-family: "Lora", serif;
     text-align: left;
     font-weight: 400;
     font-size: 1.6rem;
-    word-space: 0.5;
     text-transform: capitalize;
     padding: 1rem 0;
   }

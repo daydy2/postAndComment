@@ -107,17 +107,17 @@ const Feedlane = () => {
 };
 
 const FEEDLANE = styled.main`
-width: 80%:
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
- .feedlane-loader{
+  .feedlane-loader {
     display: flex;
     justify-content: center;
     align-items: center;
- }
+  }
 `;
 
 export default Feedlane;

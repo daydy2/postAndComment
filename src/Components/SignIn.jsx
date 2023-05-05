@@ -52,7 +52,7 @@ const SignIn = () => {
 };
 
 const Login = styled.main`
-.mainarea {
+  .mainarea {
     .form-area {
       background-color: white;
       width: 350px;
@@ -61,77 +61,78 @@ const Login = styled.main`
       border-bottom-left-radius: 0px;
     }
     .top-text {
-        text-align: center;
-        padding-bottom: 10px;
-        color: #083e9e;
-        font-weight: 700;
+      text-align: center;
+      padding-bottom: 10px;
+      color: #083e9e;
+      font-weight: 700;
     }
-    .top-text h3{
-        color: #4a5568;
-        font-weight: 400;
-        font-family: "Lora", serif;
-        font-size: 14px;
+    .top-text h3 {
+      color: #4a5568;
+      font-weight: 400;
+      font-family: "Lora", serif;
+      font-size: 14px;
     }
 
     .input-area {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
 
-        label {
-          font-family: "Lora", serif;
-          font-size: 0.8rem !important;
-          padding-bottom: 7px;
-          font-weight: 700;
-        }
-        input {
-          padding: 15px;
-          font-family: "Lora", serif;
-          font-size: 1.1rem;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          background-color: #edf2f7;
-        }
-      }
-      input[type="submit"] {
-        width: 100%;
-        padding: 16px;
-        background-color: #974444;
-        color: white;
-        border: none;
-        outline: none;
-        border-radius: 8px;
-        border-bottom-left-radius: 0px;
-        cursor: pointer;
-        margin-bottom: 15px;
+      label {
         font-family: "Lora", serif;
-        font-size: 18px;
+        font-size: 0.8rem !important;
+        padding-bottom: 7px;
         font-weight: 700;
-
-        &:hover {
-          background-color: #d67a7a;
-        }
+      }
+      input {
+        padding: 15px;
+        font-family: "Lora", serif;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        background-color: #edf2f7;
       }
     }
-    .below {
-      text-align: center;
-      margin-top: 1.5rem;
-      a {
-        color: #974444;
-        text-decoration: none;
-        p {
-          padding-bottom: 15px;
-        }
-        &:hover {
-          color: #c2bfbf;
-        }
+    input[type="submit"] {
+      width: 100%;
+      padding: 16px;
+      background-color: #974444;
+      color: white;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      border-bottom-left-radius: 0px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-family: "Lora", serif;
+      font-size: 18px;
+      font-weight: 700;
+
+      &:hover {
+        background-color: #d67a7a;
       }
     }
-}
+  }
+  .below {
+    text-align: center;
+    margin-top: 1.5rem;
+    a {
+      color: #974444;
+      text-decoration: none;
+      p {
+        padding-bottom: 15px;
+      }
+      &:hover {
+        color: #c2bfbf;
+      }
+    }
+  }
 
-@media (max-width: 320px) {
-    height: 120vh;
+  @media (max-width: 320px) {
+    & {
+      height: 120vh;
+    }
     .mainarea {
       .img {
         padding-top: 15px;
@@ -153,7 +154,7 @@ const Login = styled.main`
         }
       }
     }
-}
+  }
 `;
 
 export default SignIn;

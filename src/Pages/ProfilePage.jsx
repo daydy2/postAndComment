@@ -12,6 +12,7 @@ import { useMutation, useQuery } from "react-query";
 import { Request } from "../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
+import Loading from "../Components/LoadingModal";
 
 const ProfileSchema = Yup.object().shape({
   handle: Yup.string().required("Field can not be empty"),
@@ -22,7 +23,7 @@ const ProfileSchema = Yup.object().shape({
 
 const ProfilePage = () => {
   const user = userSlice.getState().user;
-  // console.log(user);
+  const navigate = useNavigate();
   const formikRef = useRef(null);
 
   const { data, isLoading, isError } = useQuery(
@@ -55,7 +56,8 @@ const ProfilePage = () => {
     {
       onSuccess: (data) => {
         console.log(data);
-        queryClient.invalidateQueries("data");
+        // queryClient.invalidateQueries("data");
+        navigate("/");
       },
     }
   );
@@ -178,6 +180,7 @@ const ProfilePage = () => {
           </Form>
         )}
       </Formik>
+      {mutation.isLoading && <Loading />}
     </MyProfile>
   );
 };

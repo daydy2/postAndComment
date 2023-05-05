@@ -143,7 +143,7 @@ const Container = styled.main`
 
     &__container {
       width: 751px;
-
+      padding-block: 5rem;
       background: #ffffff;
       border-radius: 24px;
       background-color: $neutral-white;

@@ -45,7 +45,7 @@ const EditPage = (props) => {
     isError,
   } = useQuery("editPost", async () => {
     const response = await editPost(postId);
-    
+
     return response;
   });
 
@@ -71,9 +71,7 @@ const EditPage = (props) => {
   const handleSubmit = async (values) => {
     mutation.mutate(values);
   };
-  if (isLoading) {
-    return <Loading />;
-  }
+
   if (isError) {
     return (
       <div className="comment-loader">
@@ -106,7 +104,12 @@ const EditPage = (props) => {
                   className="fieldInput"
                 />
               </div>
-              <Field type="hidden" name="userId" value={values.userId} onChange={handleChange}/>
+              <Field
+                type="hidden"
+                name="userId"
+                value={values.userId}
+                onChange={handleChange}
+              />
               <div className="edit-input">
                 <label htmlFor="content" className="titleLabel">
                   Content:
@@ -126,6 +129,7 @@ const EditPage = (props) => {
           );
         }}
       </Formik>
+      {mutation.isLoading && <Loading />}
     </EditForm>
   );
 };
@@ -140,7 +144,7 @@ const EditForm = styled.main`
     padding: 1rem 0;
   }
   .titleLabel {
-    font-family: 'Lora', serif;
+    font-family: "Lora", serif;
     font-size: 15px;
     color: #974444;
     margin: 10px 0;

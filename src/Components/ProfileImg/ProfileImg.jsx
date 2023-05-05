@@ -20,8 +20,7 @@ const ProfileImg = ({width, height, ...rest}) => {
 
 const Image = styled.section`
   .profile__img {
-    margin: 1rem;
-    
+    margin: 1rem;   
 
     & img {
       width: 10rem;

@@ -30,13 +30,13 @@ const Input = styled.main`
     gap: 0px;
     padding: 10px;
     border: 1px solid #bababa;
+    font-family: 'Lora', serif; font-size: 16px;
     border-radius: 8px;
 
     & input {
       width: 100%;
       outline: none;
       border-style: none;
-      font-family: "serif";
       font-style: normal;
       font-weight: 500;
       font-family: 'Lora', serif; font-size: 16px;

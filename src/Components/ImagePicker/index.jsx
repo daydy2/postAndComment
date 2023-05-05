@@ -43,71 +43,68 @@ const ImagePicker = (props) => {
   return (
     <Pick>
       <form className="imagePicker__form">
-        
-        <label htmlFor="image" className="imagePicker__label">{props.children}
-        
-            <input
-                type="file"
-                id="image"
-                accept=".png, .jpg, .jpeg"
-                onChange={changeHandler}
-                className="imagePicker__input"
-            />
-        
-            {fileDataURL ? (
-                <p className="imagePicker__p-previewer">
-                {<img src={fileDataURL} alt="preview" />}
-                </p>
-            ) : null}
+        <label htmlFor="image" className="imagePicker__label">
+          {props.children}
+
+          <input
+            type="file"
+            id="image"
+            accept=".png, .jpg, .jpeg"
+            onChange={changeHandler}
+            className="imagePicker__input"
+          />
+
+          {fileDataURL ? (
+            <p className="imagePicker__p-previewer">
+              {<img src={fileDataURL} alt="preview" />}
+            </p>
+          ) : null}
         </label>
-        
-            {/* <p>
+
+        {/* <p>
             <input type="submit" label="Upload" />
             </p> */}
       </form>
-
     </Pick>
   );
 };
 const Pick = styled.main`
-
-.imagePicker {
-    &__form{
-       margin: 10px 0;
+  .imagePicker {
+    &__form {
+      margin: 10px 0;
     }
-  &__input {
-    display: none;
-  }
-  &__label {
-    display: block;
-    width: 136px;
-    height: 136px;
-    background: $accent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px dashed #974444;
-    border-radius: 16px;
-    position: relative;
-  }
-  &__p-previewer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & img {
-      width: 95%;
-      height: 90%;
+    &__input {
+      display: none;
+    }
+    &__label {
+      display: block;
+      width: 136px;
+      height: 136px;
+      background: $accent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px dashed #974444;
       border-radius: 16px;
-      object-fit: cover;
+      position: relative;
+    }
+    &__p-previewer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & img {
+        width: 95%;
+        height: 90%;
+        border-radius: 16px;
+        object-fit: cover;
+      }
     }
   }
-}
-
-`
+`;
 
 export default ImagePicker;

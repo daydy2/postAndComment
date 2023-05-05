@@ -39,7 +39,7 @@ const Profile = (props) => {
 
 const ProfileSideNav = styled.main`
   .profile {
-    ${"" /* margin-top: 5rem; */}
+    
     color: black;
     width: 100%;
     padding: 1rem 0;
@@ -48,7 +48,7 @@ const ProfileSideNav = styled.main`
     display: flex;
     flex-direction: column !important;
     justify-content: flex-start;
-    /* align-items: flex-start; */
+   
 
     &__logout {
       text-align: center;

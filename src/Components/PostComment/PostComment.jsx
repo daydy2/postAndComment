@@ -53,12 +53,14 @@ const Comment = styled.main`
       padding: 2rem 1rem;
       box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
       width: 100%;
-      font-family: 'Lora', serif; font-size: 1.8rem;
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
     }
     & label {
        
-      font-family: 'Lora', serif; font-size: 1.8rem;
-      font-weight: bolder;
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
       text-align: center;
     }
     & input[type=submit]{

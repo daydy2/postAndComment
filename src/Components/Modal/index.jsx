@@ -108,18 +108,13 @@ const Container = styled.main`
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(8px);
-    //   animation: fadeInAnimation ease 3s;
-    //   animation-iteration-count: 1;
-    //   animation-fill-mode: forwards;
 
     &Form {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      ${"" /* width: 100%; */}
-      ${"" /* height: 25vh; */}
-
+  
       & label,
         & span,
         & button {
@@ -152,8 +147,7 @@ const Container = styled.main`
 
     &__container {
       width: 751px;
-      ${"" /* padding: 64px; */}
-
+      
       background: #ffffff;
       border-radius: 24px;
       background-color: $neutral-white;

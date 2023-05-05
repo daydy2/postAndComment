@@ -35,7 +35,6 @@ const Load = styled.main`
 
   .loadingModal__section {
     width: 40vw;
-    // background: #ffffff;
     height: 35vh;
     display: flex;
     align-items: center;

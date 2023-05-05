@@ -10,7 +10,7 @@ import { useMutation } from "react-query";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Loading from "../LoadingModal";
 
 const NewPost = () => {
@@ -34,7 +34,7 @@ const NewPost = () => {
       onSuccess: (data) => {
         console.log(data);
         navigate("/");
-        toast.success('Post successful!');
+        toast.success("Post successful!");
       },
       onError: (error) => {
         setError(error);
@@ -66,64 +66,68 @@ const NewPost = () => {
 
   return (
     <>
-    <Post>
-      <main>
-      {error && <div className="postField">Unable to Post</div>}
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={PostSchema}
-          innerRef={formikRef}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <span className="form__label">Post</span>
-              <div className="postField">
-                <InputIcon
-                  type={"text"}
-                  inputName={"title"}
-                  placeholder={"Title Please?"}
-                  iconRight={Edit}
-                  iconleft={<NotePencil size={16} weight="thin" />}
-                />
-              </div>
-              <div className="postError">
-                <ErrorMessage
-                  name="title"
-                  component="div"
-                  render={renderError}
-                />
-              </div>
-              <div className="postField">
-                <InputIcon
-                  type={"text"}
-                  inputName={"content"}
-                  placeholder={"What's on your mind?"}
-                  iconRight={Edit}
-                  iconleft={<NotePencil size={16} weight="thin" />}
-                />
-                <Field type="hidden" name="userId" value={user?.user.userId} />
-              </div>
-              <div className="postError">
-                <ErrorMessage
-                  name="content"
-                  component="div"
-                  render={renderError}
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="formButton"
-              >
-                {mutation.isLoading ? threeC : "Post"}
-              </button>
-            </Form>
-          )}
-        </Formik>
-      </main>
-    </Post>
-    {mutation.isLoading && <Loading />}
+      <Post>
+        <main>
+          {error && <div className="postField">Unable to Post</div>}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={PostSchema}
+            innerRef={formikRef}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <span className="form__label">Post</span>
+                <div className="postField">
+                  <InputIcon
+                    type={"text"}
+                    inputName={"title"}
+                    placeholder={"Title Please?"}
+                    iconRight={Edit}
+                    iconleft={<NotePencil size={16} weight="thin" />}
+                  />
+                </div>
+                <div className="postError">
+                  <ErrorMessage
+                    name="title"
+                    component="div"
+                    render={renderError}
+                  />
+                </div>
+                <div className="postField">
+                  <InputIcon
+                    type={"text"}
+                    inputName={"content"}
+                    placeholder={"What's on your mind?"}
+                    iconRight={Edit}
+                    iconleft={<NotePencil size={16} weight="thin" />}
+                  />
+                  <Field
+                    type="hidden"
+                    name="userId"
+                    value={user?.user.userId}
+                  />
+                </div>
+                <div className="postError">
+                  <ErrorMessage
+                    name="content"
+                    component="div"
+                    render={renderError}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="formButton"
+                >
+                  {mutation.isLoading ? threeC : "Post"}
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </main>
+      </Post>
+      {mutation.isLoading && <Loading />}
     </>
   );
 };
@@ -148,7 +152,8 @@ const Post = styled.main`
     }
   }
   .form__label {
-    font-family: 'Lora', serif; font-size: 17px;
+    font-family: "Lora", serif;
+    font-size: 17px;
     font-weight: bolder;
     line-height: 1.9px;
   }
@@ -160,7 +165,8 @@ const Post = styled.main`
     background: #bababa;
     color: #974444;
     margin-top: 15px;
-    font-family: 'Lora', serif; font-size: 18px;
+    font-family: 'Lora', serif;
+    font-size: 18px;
     text-transform: uppercase;
     transition: transform 0.4s ease-in;
 
@@ -208,19 +214,17 @@ const Follower = styled.main`
   margin: 3rem 0;
   padding: 10px;
   background: #ffffff;
-
-  
-
-
   .follower {
     &__header {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      font-family: 'Lora', serif;
     }
     &__header-text {
-      font-family: 'Lora', serif; font-size: 20px;
+      font-family: 'Lora', serif;
+      font-size: 20px;
       font-weight: bold;
       margin: 10px 0;
     }
@@ -229,7 +233,8 @@ const Follower = styled.main`
     }
     &__ul-list {
       list-style: none;
-      font-family: 'Lora', serif; font-size: 18px;
+      font-family: 'Lora', serif;
+      font-size: 18px;
       font-weight: 400px;
     }
     &__listItem{
@@ -239,5 +244,4 @@ const Follower = styled.main`
       margin: 10px 0;
     }
   }
-.
 `;

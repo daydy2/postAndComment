@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Comment, Follow, UnFollow } from "../Icons/Icons";
+import { Comment} from "../Icons/Icons";
 import Modal from "../Modal";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import Typography from "../ProfileTypography/Typography";
 import dayjs from "dayjs";
 import { Trash } from "phosphor-react";
-import { Request } from "../../api/request";
-import { useMutation } from "react-query";
 import { PencilLine } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import userSlice from "../../store/store";
-import LoadingModal from "../LoadingModal";
 import Loading from "../LoadingModal";
 
 const Feed = ({ title, post, author, postId, date, authorId }) => {
@@ -124,19 +121,7 @@ const FEED = styled.main`
       text-transform: capitalize;
     }
   }
-  // .feedPost p {
-  //   font-family: "Lora", serif;
-  //   margin: 1rem;
-  //   font-family: "Lora", serif;
-  //   font-size: 1.5rem;
-  //   font-weight: 400;
-  //   text-align: justify;
-  //   text-justify: inter-word;
-
-  //   &:hover {
-  //     cursor: pointer;
-  //   }
-  // }
+  
   .feedConnect {
     padding: 0rem 1rem;
     margin-top: 1.5rem;

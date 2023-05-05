@@ -8,8 +8,10 @@ import * as Yup from "yup";
 import { useMutation } from "react-query";
 import { Request } from "../../api/request";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Components/LoadingModal";
 
 const Signup = () => {
+  
   const initialValues = {
     email: "",
     password: "",
@@ -109,6 +111,7 @@ const Signup = () => {
           </Form>
         )}
       </Formik>
+      {mutation.isLoading && <Loading />}
     </Register>
   );
 };
